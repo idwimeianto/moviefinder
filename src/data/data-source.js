@@ -11,6 +11,17 @@ class DataSource {
         return Promise.reject(new Error(`${keyword} is not found`));
       });
   }
+
+  static getUpcomingMovie() {
+    return fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&include_adult=false`)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.results.length) {
+          return Promise.resolve(responseJson.results);
+        }
+        return Promise.reject(new Error(`${keyword} is not found`));
+      });
+  }
 }
 
 export default DataSource;
