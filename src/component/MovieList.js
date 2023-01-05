@@ -1,3 +1,5 @@
+import DataSource from '../data/data-source';
+
 class MovieList extends HTMLElement {
   connectedCallback() {
     this.renderInit();
@@ -10,11 +12,18 @@ class MovieList extends HTMLElement {
 
   renderInit() {
     $(this).addClass('d-block mt-5 mb-5');
-    $(this).html(`
-      <div class="alert alert-primary text-center" role="alert">
-        Welcome to movie finder!!! 
-      </div>
-    `);
+    // $(this).html(`
+    //   <div class="alert alert-primary text-center" role="alert">
+    //     Welcome to movie finder!!! 
+    //   </div>
+    // `);
+    DataSource.getUpcomingMovie()
+        .then((results) => {
+          this.movies = results;
+        })
+        .catch((message) => {
+          console.log(message);
+        });
   }
 
   renderData() {
