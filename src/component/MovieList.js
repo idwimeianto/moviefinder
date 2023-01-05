@@ -30,7 +30,7 @@ class MovieList extends HTMLElement {
     $(this).html('');
     const rowElement = $('<div></div>', { class: 'row row-cols-1 row-cols-lg-2 g-3' });
     this._movies.forEach((movie) => {
-      const movieItemElement = $('<movie-item></movie-item>')[0];
+      const movieItemElement = $(`<movie-item data-movie-id=${movie.id}></movie-item>`)[0];
 
       movieItemElement.movie = movie;
       rowElement.append(movieItemElement);
